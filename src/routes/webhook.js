@@ -1,25 +1,25 @@
 
 import { Router } from "express";
-import { WHATSAPP_POST_HANDLER } from "./whatsapp";
+import { WHATSAPP } from "./whatsapp.js";
 
 
 
-const WebhookRoutes = Router();
+export const WebhookRoutes = Router();
 
 
-WebhookRoutes.use((req, res, next) => {
-	console.log("WEBHOOK HANDLER: ", req, "\n:::WEBHOOK HANDLER:::");
+WebhookRoutes.use((req, _, next) => {
+	console.log("WEBHOOK HANDLER: ", req.headers, req.params, req.query, "\n:::WEBHOOK HANDLER:::");
 	next();
 });
 
 
 WebhookRoutes.post("/", async (req, res) => {
-	
+
 	// Assuming post is called on a POST request to your server
 	try {
 
 		// The handlers work with any middleware, as long as you pass the correct data
-		const status = await WHATSAPP_POST_HANDLER(JSON.parse(req.data), req.data, req.headers["x-hub-signature-256"]);
+		const status = await WHATSAPP.post(JSON.parse(req.data), req.data, req.headers["x-hub-signature-256"]);
 		console.log("[WEBHOOK_POST STATUS]: ", status);
 		res.sendStatus(status);
 
@@ -33,4 +33,13 @@ WebhookRoutes.post("/", async (req, res) => {
 });
 
 
-export default WebhookRoutes;
+WebhookRoutes.get("/verify", (req, res) => {
+	try {
+		// console.log("PARSED::: ", (req.query));
+		const challenge = WHATSAPP.get(req.query);
+		res.send(challenge);
+	} catch (error) {
+		console.log("[WEBHOOK_GET ERROR]: ", error);
+		res.sendStatus(error);
+	}
+});

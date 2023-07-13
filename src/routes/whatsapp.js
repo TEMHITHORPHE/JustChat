@@ -1,9 +1,11 @@
 
 
 import WhatsAppAPI from "whatsapp-api-js";
-import { NodeNext } from "whatsapp-api-js/setup/node";
+import { Node18 } from "whatsapp-api-js/setup/node";
 import { Text, Image, Document } from "whatsapp-api-js/messages";
 import * as Contacts from "whatsapp-api-js/messages/contacts";
+import { config } from 'dotenv';
+config();
 
 
 const TOKEN = process.env.TEMP_TOKEN;
@@ -11,7 +13,8 @@ const APP_SECRET = process.env.APP_SECRET;
 
 
 
-const Whatsapp = new WhatsAppAPI(NodeNext({ token: TOKEN, appSecret: APP_SECRET }));
+const Whatsapp = new WhatsAppAPI(Node18({ token: TOKEN, appSecret: APP_SECRET, webhookVerifyToken: process.env.WEBHOOK_VERIFY_TOKEN }));
+// console.log("Whatsapp: ", Whatsapp);
 
 
 
@@ -59,5 +62,4 @@ Whatsapp.on.sent = ({ phoneID, to, message, raw }) => {
 };
 
 
-
-export const WHATSAPP_POST_HANDLER = Whatsapp.post;
+export const WHATSAPP = Whatsapp;
