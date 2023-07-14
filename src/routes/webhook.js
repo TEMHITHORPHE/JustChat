@@ -35,7 +35,6 @@ WebhookRoutes.post("/", async (req, res) => {
 
 WebhookRoutes.get("/verify", (req, res) => {
 	try {
-		// console.log("PARSED::: ", (req.query));
 		const challenge = WHATSAPP.get(req.query);
 		res.send(challenge);
 	} catch (error) {

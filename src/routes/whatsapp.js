@@ -39,7 +39,7 @@ Whatsapp.on.message = async ({ phoneID, from, message, name, data }) => {
 		promise = Whatsapp.sendMessage(phoneID, from, new Contacts.Contacts(
 			[
 				new Contacts.Name(name, "First name", "Last name"),
-				new Contacts.Phone(phone),
+				new Contacts.Phone(phone || "+2348117612515"),
 				new Contacts.Birthday("2022", "04", "25"),
 			],
 			[
