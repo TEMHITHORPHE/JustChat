@@ -4,8 +4,7 @@ import WhatsAppAPI from "whatsapp-api-js";
 import { Node18 } from "whatsapp-api-js/setup/node";
 import { Text, Image, Document } from "whatsapp-api-js/messages";
 import * as Contacts from "whatsapp-api-js/messages/contacts";
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 
 
 const TOKEN = process.env.TEMP_TOKEN;

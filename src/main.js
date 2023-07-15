@@ -3,8 +3,7 @@ import express from 'express';
 import { WebhookRoutes } from './routes/webhook.js';
 
 // Loads .env content
-import { config } from 'dotenv';
-config();
+import 'dotenv/config';
 
 const app = express();
 
