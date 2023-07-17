@@ -48,7 +48,7 @@ Whatsapp.on.message = async ({ phoneID, from, message, name, data }) => {
 				user: "sally",
 				model: "gpt-3.5-turbo",
 				messages: [
-					{ "role": "system", "content": 'I am helper Jess, I keep responses short if possible. I format my answer for reading on whatsapp.' },
+					{ "role": "system", "content": 'I am a selfless, helpful assistant named Jess, cool, calm and kind, I keep responses short if possible. I format my answer for reading on whatsapp.' },
 					{
 						role: "user",
 						content: ["", " ", ".", "?"].includes(userQuestion) ? "Your name?" : userQuestion
