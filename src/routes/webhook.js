@@ -17,7 +17,8 @@ WebhookRoutes.post("/", async (req, res) => {
 
 	// Assuming post is called on a POST request to your server
 	try {
-
+		
+		console.log("[WEBHOOK_POST]: ", req);
 		// The handlers work with any middleware, as long as you pass the correct data
 		const status = await WHATSAPP.post(JSON.parse(req.data), req.data, req.headers["x-hub-signature-256"]);
 		console.log("[WEBHOOK_POST STATUS]: ", status);
@@ -31,6 +32,7 @@ WebhookRoutes.post("/", async (req, res) => {
 	}
 	return;
 });
+
 
 
 WebhookRoutes.get("/verify", (req, res) => {
