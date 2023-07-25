@@ -4,8 +4,10 @@
   "description": "OpenAI powered whatsapp bot.",
   "main": "main.js",
   "type": "module",
+  
   "scripts": {
     "dev": "nodemon src/main.js",
+    "build": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Phoenix Labs",
@@ -18,5 +20,8 @@
   "devDependencies": {
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.12"
   }
 }
